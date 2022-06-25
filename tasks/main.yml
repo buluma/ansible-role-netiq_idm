@@ -1,17 +1,21 @@
 ---
 # tasks file for netiq-idm
-- name: set OS dependent variables
+
+- name: include distribution specific variables
   tags:
     - prereq
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}_{{ ansible_distribution_release }}.yml"
-    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_os_family }}.yml"
-    - default.yml
-    # skip: True
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}_{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_os_family }}.yml"
+        - default.yml
+      paths:
+        - vars
 
 - name: run OS dependant tasks
   tags:
