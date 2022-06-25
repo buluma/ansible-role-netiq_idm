@@ -1,0 +1,87 @@
+---
+# tasks file for netiq-idm
+- name: set OS dependent variables
+  tags:
+    - prereq
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}_{{ ansible_distribution_release }}.yml"
+    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - default.yml
+
+- name: run OS dependant tasks
+  tags:
+    - prereq
+  include: "{{ os }}"
+  with_first_found:
+    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - default.yml
+  loop_control:
+    loop_var: os
+
+- name: add idvadmin group
+  tags: prereq
+  ansible.builtin.group:
+    name: idvadmin
+
+- name: add novlwww group
+  tags: prereq
+  ansible.builtin.group:
+    name: novlwww
+
+- name: add idvadmin user
+  tags:
+    - prereq
+  ansible.builtin.user:
+    name: idvadmin
+    comment: Novell IDM System User
+    group: novlwww
+    append: yes
+    system: yes
+
+- name: add novlwww user
+  tags:
+    - prereq
+  ansible.builtin.user:
+    name: novlwww
+    comment: Novell iManager System User
+    group: novlwww
+    groups: idvadmin
+    append: yes
+    system: yes
+
+- name: add novlua user
+  tags:
+    - prereq
+  ansible.builtin.user:
+    name: novlua
+    comment: Novell UserApp System User
+    groups: idvadmin
+    append: yes
+    system: yes
+
+- name: set directory for server keypair and certificate
+  tags:
+    - tls
+  ansible.builtin.file:
+    path: /etc/ssl/servercerts
+    state: directory
+    mode: 0770
+    owner: root
+    group: idvadmin
+
+- name: copy server keypair and certificate
+  tags:
+    - tls
+  ansible.builtin.copy:
+    src: wildcard.demo.live.p12
+    dest: /etc/ssl/servercerts/server.p12
+    mode: 0770
+    owner: root
+    group: idvadmin
