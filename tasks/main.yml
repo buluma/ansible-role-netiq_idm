@@ -1,34 +1,50 @@
 ---
 # tasks file for netiq-idm
 
-- name: include distribution specific variables
-  tags:
-    - prereq
-  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
+# - name: include distribution specific variables
+#   tags:
+#     - prereq
+#   ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
+#   vars:
+#     params:
+#       files:
+#         - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}_{{ ansible_distribution_release }}.yml"
+#         - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+#         - "{{ ansible_distribution }}.yml"
+#         - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+#         - "{{ ansible_os_family }}.yml"
+#         - default.yml
+#       paths:
+#         - vars
+
+- name: Load a variable file based on the OS type, or a default if not found. Using free-form to specify the file.
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
   vars:
     params:
       files:
-        - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}_{{ ansible_distribution_release }}.yml"
-        - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_os_family }}.yml"
-        - default.yml
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+        - main.yml
       paths:
-        - vars
+        - 'vars'
+
+# - name: run OS dependant tasks
+#   tags:
+#     - prereq
+#   include: "{{ os }}"
+#   with_first_found:
+#     - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+#     - "{{ ansible_distribution }}.yml"
+#     - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+#     - "{{ ansible_os_family }}.yml"
+#     - main.yml
+#   loop_control:
+#     loop_var: os
 
 - name: run OS dependant tasks
+  include: "{{ ansible_os_family }}.yml"
   tags:
     - prereq
-  include: "{{ os }}"
-  with_first_found:
-    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_os_family }}.yml"
-    - default.yml
-  loop_control:
-    loop_var: os
 
 - name: add idvadmin group
   tags: prereq
