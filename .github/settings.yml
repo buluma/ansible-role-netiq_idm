@@ -5,4 +5,4 @@
 repository:
   description: Installs NetIQ Identity Manager
   homepage: https://buluma.github.io/
-  topics: netiq, authentication, ansible, molecule, tox, playbook, hacktoberfest
+  topics: netiq, authentication, ansible, molecule, tox, playbook
