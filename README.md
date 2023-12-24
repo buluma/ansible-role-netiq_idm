@@ -1,10 +1,10 @@
-# [Ansible role netiq_idm](#netiq_idm)
+# Ansible role [netiq_idm](https://galaxy.ansible.com/ui/standalone/roles/buluma/netiq_idm/documentation)
 
 Installs NetIQ Identity Manager
 
-|GitHub|GitLab|Downloads|Version|Issues|Pull Requests|
-|------|------|-------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-netiq_idm/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-netiq_idm/actions/workflows/molecule.yml)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-netiq_idm/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-netiq_idm)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/buluma/netiq_idm)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-netiq_idm.svg)](https://github.com/buluma/ansible-role-netiq_idm/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-netiq_idm.svg)](https://github.com/buluma/ansible-role-netiq_idm/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-netiq_idm.svg)](https://github.com/buluma/ansible-role-netiq_idm/pulls/)|
+|GitHub|Version|Issues|Pull Requests|Downloads|
+|------|-------|------|-------------|---------|
+|[![github](https://github.com/buluma/ansible-role-netiq_idm/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-netiq_idm/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-netiq_idm.svg)](https://github.com/buluma/ansible-role-netiq_idm/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-netiq_idm.svg)](https://github.com/buluma/ansible-role-netiq_idm/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-netiq_idm.svg)](https://github.com/buluma/ansible-role-netiq_idm/pulls/)|[![Ansible Role](https://img.shields.io/ansible/role/d/buluma/netiq_idm)](https://galaxy.ansible.com/ui/standalone/roles/buluma/netiq_idm/documentation)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -54,9 +54,9 @@ SERVER_KEYSTORE: /etc/ssl/servercerts/server.p12
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
-| Requirement | GitHub | GitLab |
+| Requirement | GitHub | Version |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-bootstrap)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Ansible Molecule](https://github.com/buluma/ansible-role-bootstrap/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-bootstrap.svg)](https://github.com/shadowwalker/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
@@ -72,9 +72,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|[OpenSUSE](https://hub.docker.com/repository/docker/buluma/opensuse/general)|all|
+|[opensuse](https://hub.docker.com/repository/docker/buluma/opensuse/general)|all|
 
-The minimum version of Ansible required is 2.4, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.
@@ -88,14 +88,11 @@ If you find issues, please register them in [GitHub](https://github.com/buluma/a
 
 ## [License](#license)
 
-[Apache-2.0](https://github.com/buluma/ansible-role-netiq_idm/blob/master/LICENSE).
+[Apache-2.0](https://github.com/buluma/ansible-role-netiq_idm/blob/master/LICENSE)
 
 ## [Author Information](#author-information)
 
-[Michael Buluma](https://buluma.github.io/)
+[Shadow Walker](https://buluma.github.io/)
 
-Please consider [sponsoring me](https://github.com/sponsors/buluma).
-
-### [Special Thanks](#special-thanks)
 
 Template inspired by [Robert de Bock](https://github.com/robertdebock)
