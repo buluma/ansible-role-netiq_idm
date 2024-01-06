@@ -1,5 +1,5 @@
 ---
-- name: install extra packages
+- name: Suse | Install extra packages
   become: yes
   community.general.zypper:
     name: "{{ item }}"
@@ -9,7 +9,7 @@
   tags:
     - packages
 
-- name: copy SuSEfirewall2 netiq-idm service
+- name: Suse | Copy SuSEfirewall2 netiq-idm service
   become: yes
   ansible.builtin.template:
     src: SuSEfirewall2.netiq-idm.j2
@@ -19,7 +19,7 @@
   tags:
     - firewall
 
-- name: enable SuSEfirewall2 netiq-idm service
+- name: Suse | Enable SuSEfirewall2 netiq-idm service
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/sysconfig/SuSEfirewall2

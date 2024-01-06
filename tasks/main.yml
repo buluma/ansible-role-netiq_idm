@@ -41,22 +41,22 @@
 #   loop_control:
 #     loop_var: os
 
-- name: run OS dependant tasks
-  include: "{{ ansible_os_family }}.yml"
+- name: Run OS dependant tasks
+  ansible.builtin.include: "{{ ansible_os_family }}.yml"
   tags:
     - prereq
 
-- name: add idvadmin group
+- name: Add idvadmin group
   tags: prereq
   ansible.builtin.group:
     name: idvadmin
 
-- name: add novlwww group
+- name: Add novlwww group
   tags: prereq
   ansible.builtin.group:
     name: novlwww
 
-- name: add idvadmin user
+- name: Add idvadmin user
   tags:
     - prereq
   ansible.builtin.user:
@@ -66,7 +66,7 @@
     append: yes
     system: yes
 
-- name: add novlwww user
+- name: Add novlwww user
   tags:
     - prereq
   ansible.builtin.user:
@@ -77,7 +77,7 @@
     append: yes
     system: yes
 
-- name: add novlua user
+- name: Add novlua user
   tags:
     - prereq
   ansible.builtin.user:
@@ -87,7 +87,7 @@
     append: yes
     system: yes
 
-- name: set directory for server keypair and certificate
+- name: Set directory for server keypair and certificate
   tags:
     - tls
   ansible.builtin.file:
@@ -97,7 +97,7 @@
     owner: root
     group: idvadmin
 
-- name: copy server keypair and certificate
+- name: Copy server keypair and certificate
   tags:
     - tls
   ansible.builtin.copy:
