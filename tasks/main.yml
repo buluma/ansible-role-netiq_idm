@@ -42,7 +42,7 @@
 #     loop_var: os
 
 - name: Run OS dependant tasks
-  ansible.builtin.include: "{{ ansible_os_family }}.yml"
+  ansible.builtin.import_tasks: "{{ ansible_os_family }}.yml"
   tags:
     - prereq
 
