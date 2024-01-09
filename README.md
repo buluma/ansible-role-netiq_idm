@@ -12,7 +12,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: yes
   gather_facts: yes
@@ -25,7 +25,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -43,7 +43,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ```yaml
 ---
 # defaults file for netiq-idm
-SERVER_KEYSTORE: /etc/ssl/servercerts/server.p12
+server_keystore: /etc/ssl/servercerts/server.p12
 ```
 
 ## [Requirements](#requirements)
